@@ -2,7 +2,7 @@ from google_play_scraper import reviews, Sort
 import pandas as pd
 
 APP_ID = 'com.gojek.app'
-TARGET  = 10000
+TARGET  = 15000
 
 all_reviews = []
 continuation_token = None
