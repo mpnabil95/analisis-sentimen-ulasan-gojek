@@ -13,6 +13,8 @@ error,-4
 eror,-4
 bug,-3
 batal,-3
+tunggu,-2
+perbaiki,-2
 kecewa,-4
 mengecewakan,-4
 parah,-4
@@ -45,8 +47,8 @@ jauh,-2
 mutar,-2
 muter,-2
 kasar,-4
-arogan,-4
-sombong,-4
+arogan,-2
+sombong,-3
 galak,-3
 judes,-3
 ketus,-3
@@ -79,7 +81,7 @@ blokir,-3
 diblokir,-3
 banned,-4
 bend,-3
-suspend,-4
+suspend,-3
 beku,-3
 dibekukan,-3
 sedot,-3
@@ -99,6 +101,12 @@ zalim,-4
 bodoh,-4
 tolol,-4
 goblok,-4
+anjing,-4
+bangsat,-4
+babi,-4
+hapus,-2
+uninstal,-3
+uninstall,-3
 stres,-3
 pusing,-2
 bingung,-2
@@ -117,7 +125,7 @@ terganggu,-3
 berat,-2
 penuh,-2
 mental,-3
-keluar,-1
+keluar,-2
 force,-3
 close,-3
 stuck,-3
