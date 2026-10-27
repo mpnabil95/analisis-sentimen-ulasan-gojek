@@ -1,0 +1,359 @@
+{
+  "metadata": {
+    "project": "Analisis sentimen ulasan aplikasi Gojek",
+    "seed": 42,
+    "framework_deep_learning": "PyTorch (portable variant, bukan TensorFlow notebook asli)",
+    "processing": "normalisasi slang + fixed stopwords + light stemmer offline; berbeda dari PySastrawi/NLTK asli",
+    "data_source": "ulasan_gojek_raw.csv",
+    "timestamp_utc": "2026-10-26T09:05:11.309657+00:00",
+    "python": "3.13.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0",
+    "torch": "2.10.0+cpu",
+    "execution_device": "cpu"
+  },
+  "dataset": {
+    "raw_rows": 15000,
+    "after_remove_missing": 15000,
+    "after_dedup_raw_content": 11748,
+    "after_drop_empty_stems": 11677,
+    "after_dedup_text_stem": 10863,
+    "stem_duplicates_removed": 814,
+    "rows": 10863,
+    "class_counts": {
+      "negatif": 5110,
+      "positif": 4074,
+      "netral": 1679
+    },
+    "unique_stems": true
+  },
+  "schemes": {
+    "skema_1_linear_svc_tfidf": {
+      "algorithm": "LinearSVC (L1)",
+      "features": "TF-IDF 1-2 gram",
+      "split": "80/20",
+      "training_accuracy": 99.252,
+      "testing_accuracy": 92.4988,
+      "testing_macro_f1": 0.9052,
+      "report": {
+        "negatif": {
+          "precision": 0.9370829361296473,
+          "recall": 0.961839530332681,
+          "f1-score": 0.9492998551424433,
+          "support": 1022.0
+        },
+        "netral": {
+          "precision": 0.8662420382165605,
+          "recall": 0.8095238095238095,
+          "f1-score": 0.8369230769230769,
+          "support": 336.0
+        },
+        "positif": {
+          "precision": 0.9320987654320988,
+          "recall": 0.9263803680981595,
+          "f1-score": 0.9292307692307692,
+          "support": 815.0
+        },
+        "accuracy": 0.9249884951679705,
+        "macro avg": {
+          "precision": 0.9118079132594356,
+          "recall": 0.89924790265155,
+          "f1-score": 0.9051512337654298,
+          "support": 2173.0
+        },
+        "weighted avg": {
+          "precision": 0.9242598156430853,
+          "recall": 0.9249884951679705,
+          "f1-score": 0.9243965406004637,
+          "support": 2173.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          983,
+          18,
+          21
+        ],
+        [
+          30,
+          272,
+          34
+        ],
+        [
+          36,
+          24,
+          755
+        ]
+      ],
+      "train_size": 8690,
+      "test_size": 2173
+    },
+    "skema_2_logreg_bow": {
+      "algorithm": "Logistic Regression (L2)",
+      "features": "Bag of Words 1-2 gram",
+      "split": "70/30",
+      "training_accuracy": 99.7764,
+      "testing_accuracy": 90.764,
+      "testing_macro_f1": 0.8857,
+      "report": {
+        "negatif": {
+          "precision": 0.9312134977287476,
+          "recall": 0.9360730593607306,
+          "f1-score": 0.933636955107352,
+          "support": 1533.0
+        },
+        "netral": {
+          "precision": 0.7992202729044834,
+          "recall": 0.8134920634920635,
+          "f1-score": 0.8062930186823992,
+          "support": 504.0
+        },
+        "positif": {
+          "precision": 0.9236514522821577,
+          "recall": 0.9108019639934534,
+          "f1-score": 0.9171817058096415,
+          "support": 1222.0
+        },
+        "accuracy": 0.9076403804848113,
+        "macro avg": {
+          "precision": 0.8846950743051295,
+          "recall": 0.8867890289487491,
+          "f1-score": 0.8857038931997976,
+          "support": 3259.0
+        },
+        "weighted avg": {
+          "precision": 0.9079654446918767,
+          "recall": 0.9076403804848113,
+          "f1-score": 0.9077732979732684,
+          "support": 3259.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          1435,
+          56,
+          42
+        ],
+        [
+          44,
+          410,
+          50
+        ],
+        [
+          62,
+          47,
+          1113
+        ]
+      ],
+      "train_size": 7604,
+      "test_size": 3259
+    },
+    "skema_3_bilstm": {
+      "algorithm": "PyTorch Bidirectional LSTM",
+      "features": "Train-only learned word embedding",
+      "split": "80/20 with 10% validation of train",
+      "validation_accuracy": 89.9885,
+      "validation_size": 869,
+      "best_epoch": 12,
+      "history": [
+        {
+          "epoch": 1,
+          "training_accuracy": 51.515,
+          "validation_accuracy": 65.938,
+          "training_loss": 1.04555,
+          "validation_loss": 0.97201
+        },
+        {
+          "epoch": 2,
+          "training_accuracy": 65.158,
+          "validation_accuracy": 71.116,
+          "training_loss": 0.90678,
+          "validation_loss": 0.78772
+        },
+        {
+          "epoch": 3,
+          "training_accuracy": 71.679,
+          "validation_accuracy": 76.064,
+          "training_loss": 0.7445,
+          "validation_loss": 0.6526
+        },
+        {
+          "epoch": 4,
+          "training_accuracy": 76.538,
+          "validation_accuracy": 79.402,
+          "training_loss": 0.62071,
+          "validation_loss": 0.5682
+        },
+        {
+          "epoch": 5,
+          "training_accuracy": 81.025,
+          "validation_accuracy": 81.933,
+          "training_loss": 0.53256,
+          "validation_loss": 0.50671
+        },
+        {
+          "epoch": 6,
+          "training_accuracy": 83.429,
+          "validation_accuracy": 84.465,
+          "training_loss": 0.46518,
+          "validation_loss": 0.46355
+        },
+        {
+          "epoch": 7,
+          "training_accuracy": 86.076,
+          "validation_accuracy": 85.961,
+          "training_loss": 0.42309,
+          "validation_loss": 0.42721
+        },
+        {
+          "epoch": 8,
+          "training_accuracy": 87.649,
+          "validation_accuracy": 86.997,
+          "training_loss": 0.38164,
+          "validation_loss": 0.39945
+        },
+        {
+          "epoch": 9,
+          "training_accuracy": 88.94,
+          "validation_accuracy": 87.687,
+          "training_loss": 0.34659,
+          "validation_loss": 0.37448
+        },
+        {
+          "epoch": 10,
+          "training_accuracy": 89.413,
+          "validation_accuracy": 88.377,
+          "training_loss": 0.32155,
+          "validation_loss": 0.361
+        },
+        {
+          "epoch": 11,
+          "training_accuracy": 90.372,
+          "validation_accuracy": 88.953,
+          "training_loss": 0.29986,
+          "validation_loss": 0.33901
+        },
+        {
+          "epoch": 12,
+          "training_accuracy": 91.446,
+          "validation_accuracy": 89.988,
+          "training_loss": 0.26335,
+          "validation_loss": 0.33093
+        }
+      ],
+      "vocabulary_size": 8472,
+      "training_accuracy": 94.2335,
+      "testing_accuracy": 89.0934,
+      "testing_macro_f1": 0.8717,
+      "report": {
+        "negatif": {
+          "precision": 0.907088122605364,
+          "recall": 0.9266144814090019,
+          "f1-score": 0.9167473378509197,
+          "support": 1022.0
+        },
+        "netral": {
+          "precision": 0.7824858757062146,
+          "recall": 0.8244047619047619,
+          "f1-score": 0.8028985507246377,
+          "support": 336.0
+        },
+        "positif": {
+          "precision": 0.9187096774193548,
+          "recall": 0.8736196319018404,
+          "f1-score": 0.8955974842767296,
+          "support": 815.0
+        },
+        "accuracy": 0.8909341923607915,
+        "macro avg": {
+          "precision": 0.8694278919103112,
+          "recall": 0.874879625071868,
+          "f1-score": 0.8717477909507624,
+          "support": 2173.0
+        },
+        "weighted avg": {
+          "precision": 0.8921802589216494,
+          "recall": 0.8909341923607915,
+          "f1-score": 0.8912110639726889,
+          "support": 2173.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          947,
+          42,
+          33
+        ],
+        [
+          29,
+          277,
+          30
+        ],
+        [
+          68,
+          35,
+          712
+        ]
+      ],
+      "train_size": 7821,
+      "test_size": 2173
+    }
+  },
+  "inference": [
+    {
+      "input": "Aplikasi Gojek sangat bagus, mudah digunakan dan driver ramah",
+      "processed": "sangat bagus mudah guna driver ramah",
+      "linear_svc": "positif",
+      "logreg": "positif",
+      "bilstm": "positif",
+      "bilstm_confidence": 1.0,
+      "majority_vote": "positif"
+    },
+    {
+      "input": "GoFood murah, pelayanan sangat memuaskan",
+      "processed": "gofood murah pelayan sangat puas",
+      "linear_svc": "positif",
+      "logreg": "positif",
+      "bilstm": "positif",
+      "bilstm_confidence": 0.9972,
+      "majority_vote": "positif"
+    },
+    {
+      "input": "Aplikasi sering error dan sangat mengecewakan",
+      "processed": "sering error sangat kecewa",
+      "linear_svc": "negatif",
+      "logreg": "negatif",
+      "bilstm": "negatif",
+      "bilstm_confidence": 0.9966,
+      "majority_vote": "negatif"
+    },
+    {
+      "input": "Driver terlalu lama, pesanan saya batal terus",
+      "processed": "driver terlalu lama pesan saya batal terus",
+      "linear_svc": "negatif",
+      "logreg": "negatif",
+      "bilstm": "negatif",
+      "bilstm_confidence": 0.9938,
+      "majority_vote": "negatif"
+    },
+    {
+      "input": "Saya menggunakan aplikasi untuk bepergian setiap hari",
+      "processed": "saya guna bepergi hari",
+      "linear_svc": "netral",
+      "logreg": "netral",
+      "bilstm": "netral",
+      "bilstm_confidence": 0.7976,
+      "majority_vote": "netral"
+    },
+    {
+      "input": "Saya memesan makanan dari restoran dekat kantor",
+      "processed": "saya memes makan restor dekat kantor",
+      "linear_svc": "netral",
+      "logreg": "netral",
+      "bilstm": "netral",
+      "bilstm_confidence": 0.5861,
+      "majority_vote": "netral"
+    }
+  ],
+  "execution_seconds": 247.78
+}

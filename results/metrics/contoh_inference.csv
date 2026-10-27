@@ -1,0 +1,7 @@
+input,processed,linear_svc,logreg,bilstm,bilstm_confidence,majority_vote
+"Aplikasi Gojek sangat bagus, mudah digunakan dan driver ramah",sangat bagus mudah guna driver ramah,positif,positif,positif,1.0,positif
+"GoFood murah, pelayanan sangat memuaskan",gofood murah pelayan sangat puas,positif,positif,positif,0.9972,positif
+Aplikasi sering error dan sangat mengecewakan,sering error sangat kecewa,negatif,negatif,negatif,0.9966,negatif
+"Driver terlalu lama, pesanan saya batal terus",driver terlalu lama pesan saya batal terus,negatif,negatif,negatif,0.9938,negatif
+Saya menggunakan aplikasi untuk bepergian setiap hari,saya guna bepergi hari,netral,netral,netral,0.7976,netral
+Saya memesan makanan dari restoran dekat kantor,saya memes makan restor dekat kantor,netral,netral,netral,0.5861,netral

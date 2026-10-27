@@ -1,0 +1,4 @@
+scheme,algorithm,train_accuracy,test_accuracy,macro_f1
+skema_1_linear_svc_tfidf,LinearSVC (L1),99.252,92.4988,0.9052
+skema_2_logreg_bow,Logistic Regression (L2),99.7764,90.764,0.8857
+skema_3_bilstm,PyTorch Bidirectional LSTM,94.2335,89.0934,0.8717
